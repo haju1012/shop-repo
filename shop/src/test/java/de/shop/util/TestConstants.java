@@ -3,9 +3,7 @@ package de.shop.util;
 import static de.shop.util.Constants.REST_PATH;
 
 
-/**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
- */
+
 public final class TestConstants {
 	public static final String WEB_PROJEKT = "shop";
 
@@ -22,7 +20,8 @@ public final class TestConstants {
 
 	// Pfade und Pfad-Parameter
 	public static final String KUNDEN_URI = BASE_URI + "/kunden";
-	public static final String KUNDEN_ID_URI = KUNDEN_URI + "/{" + KUNDEN_ID_PATH_PARAM + "}";
+	//FIXME File-Uri Konstante definieren
+	public static final String KUNDEN_ID_URI = KUNDEN_URI + "/kundeId";
 	public static final String KUNDEN_ID_FILE_URI = KUNDEN_ID_URI + "/file";
 	
 	public static final String BESTELLUNGEN_URI = BASE_URI + "/bestellungen";
