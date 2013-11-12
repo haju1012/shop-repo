@@ -80,7 +80,7 @@ import de.shop.util.persistence.File;
  */
 @Entity
 //Zu email wird unten ein UNIQUE Index definiert
-@Table(name = "kunde", indexes = { @Index(columnList = "nachname"), @Index(columnList = "file_fk")})
+@Table(name = "kunde", indexes = { @Index(columnList = "nachname"), @Index(columnList = "file_fk") })
 @Inheritance  // Alternativen: strategy = SINGLE_TABLE (=default), TABLE_PER_CLASS, JOINED
 @DiscriminatorColumn(name = "art", length = 1)
 @NamedQueries({

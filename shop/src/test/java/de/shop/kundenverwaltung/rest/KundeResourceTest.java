@@ -296,7 +296,9 @@ public class KundeResourceTest extends AbstractResourceTest {
 		
 		final ResteasyConstraintViolation violation =
 				                          filter(violations).with("message")
-                                                            .equalsTo("A lastname must start with exactly one capital letter followed by at least one lower letter, and composed names with \"-\" are allowed.")
+                                                            .equalsTo("A lastname must start with "
+                                             + "exactly one capital letter followed by at least one lower "
+                                             + "letter, and composed names with \"-\" are allowed.")
                                                             .get()
                                                             .iterator()
                                                             .next();
@@ -451,14 +453,17 @@ public class KundeResourceTest extends AbstractResourceTest {
 		
 		ResteasyConstraintViolation violation =
 				                    filter(violations).with("message")
-                                                      .equalsTo("A lastname must have at least 2 and may only have up to 32 characters.")
+                                                      .equalsTo("A lastname must have at least 2 and "
+                                                      		+ "may only have up to 32 characters.")
                                                       .get()
                                                       .iterator()
                                                       .next();
 		assertThat(violation.getValue()).isEqualTo(String.valueOf(nachname));
 		
 		violation = filter(violations).with("message")
-                                      .equalsTo("A lastname must start with exactly one capital letter followed by at least one lower letter, and composed names with \"-\" are allowed.")
+                                      .equalsTo("A lastname must start with exactly one capital "
+                                      		+ "letter followed by at least one lower letter, "
+                                      		+ "and composed names with \"-\" are allowed.")
                                       .get()
                                       .iterator()
                                       .next();
@@ -698,7 +703,7 @@ public class KundeResourceTest extends AbstractResourceTest {
                                                      .request()
                                                      .accept(mimeType)
                                                      .get();
-		downloadBytes = response.readEntity(new GenericType<byte[]>() {});
+		downloadBytes = response.readEntity(new GenericType<byte[]>() { });
 		
 		// Then (2)
 		assertThat(uploadBytes.length).isEqualTo(downloadBytes.length);

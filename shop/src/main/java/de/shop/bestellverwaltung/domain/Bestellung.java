@@ -58,7 +58,7 @@ import de.shop.kundenverwaltung.domain.AbstractKunde;
  * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
  */
 @Entity
-@Table(indexes = { @Index(columnList = "kunde_fk"), @Index(columnList = "erzeugt")})
+@Table(indexes = { @Index(columnList = "kunde_fk"), @Index(columnList = "erzeugt") })
 @NamedQueries({
 	@NamedQuery(name  = Bestellung.FIND_BESTELLUNGEN_BY_KUNDEID,
                 query = "SELECT b"
