@@ -8,11 +8,11 @@
  <interceptors>
   <class>de.shop.util.interceptor.LogInterceptor</class>
  </interceptors>
- <!--
+ 
  <alternatives>
   <stereotype>de.shop.util.cdi.MockService</stereotype>
  </alternatives>
- -->
+ 
  <!--
   <class>de.shop.bestellverwaltung.service.BestellungServiceMitGeschenkverpackung</class>
  -->

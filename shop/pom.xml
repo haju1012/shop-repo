@@ -671,9 +671,18 @@
 			<scope>test</scope>
 		</dependency>
 		
+		
+		<!--
 		<dependency>
 			<groupId>org.wildfly</groupId>
 			<artifactId>wildfly-arquillian-container-${arquillian.managedOrRemote}</artifactId>
+			<scope>test</scope>
+		</dependency>
+		-->
+
+		<dependency>
+			<groupId>org.wildfly</groupId>
+			<artifactId>wildfly-arquillian-container-remote</artifactId>
 			<scope>test</scope>
 		</dependency>
 
