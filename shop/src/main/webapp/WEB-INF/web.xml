@@ -49,6 +49,9 @@
    <role-name>admin</role-name>
    <role-name>mitarbeiter</role-name>
   </auth-constraint>
+  <user-data-constraint>
+<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+</user-data-constraint>
  </security-constraint>
  <security-constraint>
   <web-resource-collection>
