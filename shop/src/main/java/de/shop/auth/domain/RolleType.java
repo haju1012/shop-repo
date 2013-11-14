@@ -1,5 +1,7 @@
 package de.shop.auth.domain;
 
+import java.util.Locale;
+
 public enum RolleType {
 	ADMIN("admin"),
 	MITARBEITER("mitarbeiter"),
@@ -21,6 +23,6 @@ private String internal;
 			return null;
 		}
 		
-		return RolleType.valueOf(internal.toUpperCase());
+		return RolleType.valueOf(internal.toUpperCase(Locale.ENGLISH));
 	}
 }

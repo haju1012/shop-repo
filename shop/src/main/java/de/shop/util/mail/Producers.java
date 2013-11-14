@@ -15,7 +15,8 @@ public class Producers implements Serializable {
 	private static final long serialVersionUID = 3916523726340426731L;
 	
 	// In src\webapp\WEB-INF\web.xml koennen die einzelnen Werte gesetzt bzw. ueberschrieben werden
-
+	//TODO Mailadressen definieren und mit MailSnag 
+	
 	@Resource(name = "absenderMail")
 	@Produces
 	@AbsenderMail
