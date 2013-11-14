@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.concurrent.ManagedExecutorService;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
@@ -25,6 +26,7 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.jboss.ejb3.annotation.SecurityDomain;
 import org.jboss.logging.Logger;
 
 import com.google.common.base.Strings;
@@ -53,6 +55,8 @@ import de.shop.util.persistence.MimeType;
  * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
  */
 @Log
+@RolesAllowed ({"admin","mitarbeiter","abteilungsleiter"})
+@SecurityDomain("shop")
 public class KundeService implements Serializable {
 	private static final long serialVersionUID = 5654417703891549367L;
 	
@@ -110,6 +114,7 @@ public class KundeService implements Serializable {
 	 * @param fetch Angabe, welche Objekte mitgeladen werden sollen
 	 * @return Der gesuchte Kunde oder null, falls es keinen zur gegebenen ID gibt
 	 */
+	@RolesAllowed("admin")
 	public AbstractKunde findKundeById(Long id, FetchType fetch) {
 		if (id == null) {
 			return null;

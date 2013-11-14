@@ -241,4 +241,18 @@ public class AuthService implements Serializable {
 		
 		System.out.println("FERTIG");
 	}
+	public void flush(String username) {
+		try (ModelControllerClient client =
+		ModelControllerClient.Factory.create("localhost", 9990)) {
+		ModelNode address = new ModelNode();
+		address.add("subsystem", "security");
+		address.add("security-domain", "shop");
+		ModelNode operation = new ModelNode();
+		operation.get("address").set(address);
+		operation.get("operation").set("flush-cache");
+		operation.get("principal").set(username);
+		}
+		catch (IOException e) { throw new RuntimeException(e); }
+		}
+	
 }
