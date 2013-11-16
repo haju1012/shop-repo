@@ -180,4 +180,19 @@
   <security-role>
     <role-name>kunde</role-name>
   </security-role>
+  
+  <security-constraint>
+<web-resource-collection>
+<web-resource-name>mitarbeiterTaetigkeiten</web-resource-name>
+<url-pattern>/kundenverwaltung/createKunde.jsf</url-pattern>
+<url-pattern>/kundenverwaltung/updateKunde.jsf</url-pattern>
+<http-method>POST</http-method>
+<http-method>GET</http-method>
+</web-resource-collection>
+<auth-constraint>
+<role-name>mitarbeiter</role-name>
+<role-name>admin</role-name>
+</auth-constraint>
+</security-constraint>
+
 </web-app>
