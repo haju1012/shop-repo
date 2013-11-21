@@ -241,7 +241,7 @@ public class AuthService implements Serializable {
 		
 		System.out.println("FERTIG");
 	}
-	public void flush(String username) {
+	/*public void flush(String username) {
 		try (ModelControllerClient client =
 		ModelControllerClient.Factory.create("localhost", 9990)) {
 		ModelNode address = new ModelNode();
@@ -254,5 +254,5 @@ public class AuthService implements Serializable {
 		}
 		catch (IOException e) { throw new RuntimeException(e); }
 		}
-	
+	/*/
 }

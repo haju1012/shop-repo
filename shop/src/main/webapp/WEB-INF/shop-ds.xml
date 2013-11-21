@@ -12,8 +12,8 @@
 			<max-pool-size>4</max-pool-size>
 		</pool>
 		<security>
-			<user-name>sa</user-name>
-			<password>sa</password>
+			<user-name>shop</user-name>
+			<password>p</password>
 		</security>
 		<validation>
 			<valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.oracle.OracleValidConnectionChecker"/>
