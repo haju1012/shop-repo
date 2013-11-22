@@ -36,7 +36,7 @@ import de.shop.util.HttpsConcurrencyHelper;
 
 //Logging durch java.util.logging
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * @author <a>Team 8</a>
  */
 @RunWith(Arquillian.class)
 public class KundeResourceConcurrencyTest extends AbstractResourceTest {

@@ -3,7 +3,7 @@ package de.shop.artikelverwaltung.service;
 import de.shop.util.AbstractShopException;
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * @author <a>Team 8</a>
  */
 public abstract class AbstractArtikelServiceException extends AbstractShopException {
 	private static final long serialVersionUID = 5999208465631860486L;

@@ -24,7 +24,7 @@ import de.shop.util.interceptor.Log;
 
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * @author <a>Team 8</a>
  */
 @Log
 public class ArtikelService implements Serializable {

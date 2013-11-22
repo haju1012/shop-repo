@@ -3,7 +3,7 @@
 package de.shop.artikelverwaltung.domain;
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * @author <a>Team 8</a>
  */
 import static javax.xml.bind.annotation.XmlAccessType.FIELD;
 

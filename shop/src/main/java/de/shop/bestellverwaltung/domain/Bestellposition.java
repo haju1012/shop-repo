@@ -30,7 +30,7 @@ import de.shop.artikelverwaltung.domain.Artikel;
 
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * @author <a>Team 8</a>
  */
 @Entity
 @Table(indexes = { @Index(columnList = "bestellung_fk"), @Index(columnList = "artikel_fk") })

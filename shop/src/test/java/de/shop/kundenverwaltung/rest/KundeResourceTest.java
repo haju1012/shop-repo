@@ -68,7 +68,7 @@ import de.shop.util.AbstractResourceTest;
 
 //Logging durch java.util.logging
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * @author <a>Team 8</a>
  */
 @RunWith(Arquillian.class)
 public class KundeResourceTest extends AbstractResourceTest {
