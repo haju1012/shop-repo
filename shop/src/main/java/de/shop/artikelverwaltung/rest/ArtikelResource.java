@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -111,6 +112,36 @@ public class ArtikelResource {
 		
 		return Response.created(getUriArtikel(artikel, uriInfo)).build();
 	}
+	
+	@PUT
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Produces({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Transactional
+	public Response updateArtikel(Artikel artikel) {
+		// Vorhandenen Artikel ermitteln
+		final Artikel origArt = as.findArtikelById(artikel.getId());
+		if (origArt == null) {
+			final String msg = "Kein Artikel gefunden mit der ID " + artikel.getId();
+			throw new NotFoundException(msg);
+		}
+		LOGGER.tracef("Artikel vorher: %s", origArt);
+	
+		// Daten des vorhandenen Kunden ueberschreiben
+		origArt.setValues(artikel);
+		LOGGER.tracef("Artikel nachher: %s", origArt);
+		
+		// Update durchfuehren
+		artikel = as.updateArtikel(origArt);
+		if (artikel == null) {
+			// TODO msg passend zu locale
+			final String msg = "Kein Kunde gefunden mit der ID " + origArt.getId();
+			throw new NotFoundException(msg);
+		}
+		
+		return Response.ok(artikel).links(getTransitionalLinks(artikel, uriInfo))
+				.build();
+	}
+	
 
 	
 }

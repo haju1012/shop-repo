@@ -23,7 +23,7 @@ import com.google.common.base.Strings;
 import de.shop.artikelverwaltung.domain.Artikel;
 import de.shop.util.interceptor.Log;
 
-import javax.persistence.TypedQuery;
+
 
 
 /**
@@ -74,6 +74,27 @@ public class ArtikelService implements Serializable {
 		return artikel;
 	}
 	
+	public Artikel updateArtikel(Artikel artikel) {
+		if (artikel == null) {
+			return null;
+		}
+
+		// kunde vom EntityManager trennen, weil anschliessend z.B. nach Id
+		// gesucht wird
+		em.detach(artikel);
+
+		final Artikel tmp = findArtikelById(artikel.getId());
+		if (tmp != null) {
+			em.detach(tmp);
+			if (tmp.getId().longValue() != artikel.getId().longValue()) {
+				// anderes Objekt mit gleicher Bezeichnung
+				throw new BezeichnungExistsException(artikel.getBezeichnung());
+			}
+		}
+
+		em.merge(artikel);
+		return artikel;
+	}
 	
 	/**
 	 * Verfuegbare Artikel ermitteln

@@ -19,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PostPersist;
 import javax.persistence.PostUpdate;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.Version;
@@ -50,7 +52,12 @@ import org.jboss.logging.Logger;
     @NamedQuery(name  = Artikel.FIND_LADENHUETER,
    	            query = "SELECT    a"
    	            	    + " FROM   Artikel a"
-   	            	    + " WHERE  a NOT IN (SELECT bp.artikel FROM Bestellposition bp)")
+   	            	    + " WHERE  a NOT IN (SELECT bp.artikel FROM Bestellposition bp)"),
+	@NamedQuery(name  = Artikel.FIND_ARTIKEL_BY_BEZEICHNUNG,
+		query = "SELECT      a"
+				+ " FROM     Artikel a"
+				+ " WHERE    a.bezeichnung LIKE :" + Artikel.PARAM_ARTIKEL_BEZEICHNUNG
+				)
 })
 @Cacheable
 @XmlRootElement
@@ -68,6 +75,7 @@ public class Artikel implements Serializable {
 	public static final String PARAM_ARTIKEL_BEZEICHNUNG = "bezeichnung";
 	
 	public static final String PARAM_BEZEICHNUNG = "bezeichnung";
+	
 
 	@Id
 	@GeneratedValue
@@ -95,6 +103,12 @@ public class Artikel implements Serializable {
 	@XmlTransient
 	private Date aktualisiert;
 
+	@PrePersist
+	private void prePersist() {
+		erzeugt = new Date();
+		aktualisiert = new Date();
+	}
+	
 	@PostPersist
 	private void postPersist() {
 		LOGGER.debugf("Neuer Artikel mit ID=%d", id);
@@ -103,6 +117,16 @@ public class Artikel implements Serializable {
 	@PostUpdate
 	private void postUpdate() {
 		LOGGER.debugf("Artikel mit ID=%s aktualisiert: version=%d", id, version);
+	}
+	
+	@PreUpdate
+	private void preUpdate() {
+		aktualisiert = new Date();
+	}
+	
+	public void setValues(Artikel a) {
+		bezeichnung = a.bezeichnung;
+		ausgesondert = a.ausgesondert;
 	}
 	
 	public Artikel() {
