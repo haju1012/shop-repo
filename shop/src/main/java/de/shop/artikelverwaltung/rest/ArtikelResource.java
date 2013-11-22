@@ -4,6 +4,7 @@ import static de.shop.util.Constants.SELF_LINK;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.MediaType.APPLICATION_XML;
 import static javax.ws.rs.core.MediaType.TEXT_XML;
+import static de.shop.util.Constants.KEINE_ID;
 
 import java.lang.invoke.MethodHandles;
 import java.net.URI;
@@ -11,8 +12,10 @@ import java.net.URI;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -40,7 +43,10 @@ import de.shop.util.rest.UriHelper;
 public class ArtikelResource {
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	private static final String NOT_FOUND_ID = "artikel.notFound.id";
-		
+	
+	@Context
+    private UriInfo uriInfo;
+	
 	@Inject
 	private ArtikelService as;
 	
@@ -87,4 +93,24 @@ public class ArtikelResource {
 	public URI getUriArtikel(Artikel artikel, UriInfo uriInfo) {
 		return uriHelper.getUri(ArtikelResource.class, "findArtikelById", artikel.getId(), uriInfo);
 	}
+	
+	@POST
+	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
+	@Produces
+	@Transactional
+	public Response createArtikel(Artikel artikel) {
+		LOGGER.trace("In Artikel Post");
+		LOGGER.tracef("Prob Artikel: %s", artikel);
+		
+		artikel.setId(KEINE_ID);
+		//artikel.setBezeichnung(artikel.getBezeichnung());
+		
+		//kunde = (Privatkunde) ks.createKunde(kunde, locale);
+		artikel = as.createArtikel(artikel);
+		LOGGER.tracef("Artikel: %s", artikel);
+		
+		return Response.created(getUriArtikel(artikel, uriInfo)).build();
+	}
+
+	
 }

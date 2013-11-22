@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
@@ -21,6 +22,8 @@ import com.google.common.base.Strings;
 
 import de.shop.artikelverwaltung.domain.Artikel;
 import de.shop.util.interceptor.Log;
+
+import javax.persistence.TypedQuery;
 
 
 /**
@@ -44,6 +47,33 @@ public class ArtikelService implements Serializable {
 	private void preDestroy() {
 		LOGGER.debugf("CDI-faehiges Bean %s wird geloescht", this);
 	}
+	
+	public Artikel createArtikel(Artikel artikel) {
+		if (artikel == null) {
+			return artikel;
+		}
+
+		// Die Methode ist in Agabe 2 vorhanden , muss kopieren , und gemacht !
+		// validateArtikel(artikel, locale, Default.class);
+
+		// Pruefung, ob die Bezeichnung schon existiert
+		try {
+			LOGGER.trace("Prufung der Bezeichnung");
+			em.createNamedQuery(Artikel.FIND_ARTIKEL_BY_BEZEICHNUNG,
+					Artikel.class)
+					.setParameter(Artikel.PARAM_ARTIKEL_BEZEICHNUNG,
+							artikel.getBezeichnung()).getSingleResult();
+			throw new BezeichnungExistsException(artikel.getBezeichnung());
+		} catch (NoResultException e) {
+			// Noch kein Artikel mit dieser Bezeichnung
+			LOGGER.trace("Bezeichnung existiert noch nicht");
+		}
+		LOGGER.trace("Bevor Persist");
+		em.persist(artikel);
+		LOGGER.trace("Nach Persist");
+		return artikel;
+	}
+	
 	
 	/**
 	 * Verfuegbare Artikel ermitteln
