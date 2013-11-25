@@ -13,13 +13,12 @@ import static org.fest.assertions.api.Assertions.assertThat;
 import static org.fest.assertions.api.Assertions.fail;
 
 import java.lang.invoke.MethodHandles;
-import java.net.URI;
-import java.net.URISyntaxException;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import javax.mail.internet.ParseException;
+
 import javax.ws.rs.core.Response;
 
 import org.jboss.arquillian.junit.Arquillian;
@@ -29,10 +28,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.shop.artikelverwaltung.domain.Artikel;
-import de.shop.bestellverwaltung.domain.Bestellposition;
-import de.shop.bestellverwaltung.domain.Bestellung;
-import de.shop.kundenverwaltung.domain.Adresse;
-import de.shop.kundenverwaltung.domain.Privatkunde;
 import de.shop.util.AbstractResourceTest;
 
 @RunWith(Arquillian.class)
@@ -97,44 +92,32 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 	}
 	
 	@Test
-	@InSequence(10)
-	public void createArtikel() throws URISyntaxException {
+	@InSequence(5)
+	public void createArtikel() {
 		LOGGER.finer("BEGINN");
 		
 		// Given
-		final Long artikelId = ARTIKEL_ID_VORHANDEN;
+
 		final int version = NEUE_VERSION;
 		final String bezeichnung = NEUE_BEZEICHNUNG;
 		final boolean ausgesondert = NEU_AUSGESONDERT;
 		final Date erzeugt = NEU_ERZEUGT;
 		final Date aktualisiert = NEU_AKTUALISIERT;
 		
-		final Artikel artikel = new Artikel(version, bezeichnung, ausgesondert, erzeugt, aktualisiert); //id,
-		// artikel.setID(id);
+		final Artikel artikel = new Artikel();
+
 		artikel.setVersion(version);
 		artikel.setBezeichnung(bezeichnung);
 		artikel.setAusgesondert(ausgesondert);
+		artikel.setErzeugt(erzeugt);
 		artikel.setAktualisiert(aktualisiert);
 
 		
-		// Neues, client-seitiges Bestellungsobjekt als JSON-Datensatz
-		final Bestellung bestellung = new Bestellung();
-		
-		Bestellposition bp = new Bestellposition();
-		bp.setArtikelUri(new URI(ARTIKEL_URI + "/" + artikelId1));
-		bp.setAnzahl((short) 1);
-		bestellung.addBestellposition(bp);
-
-		bp = new Bestellposition();
-		bp.setArtikelUri(new URI(ARTIKEL_URI + "/" + artikelId2));
-		bp.setAnzahl((short) 1);
-		bestellung.addBestellposition(bp);
-		
 		// When
 		Long id;
-		Response response = getHttpsClient(USERNAME, PASSWORD).target(BESTELLUNGEN_URI)
+		Response response = getHttpsClient(USERNAME, PASSWORD).target(ARTIKEL_URI)
                                                               .request()
-                                                              .post(json(bestellung));
+                                                              .post(json(artikel));
 			
 		// Then
 		assertThat(response.getStatus()).isEqualTo(HTTP_CREATED);
@@ -147,8 +130,8 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 		assertThat(id).isPositive();
 		
 		// Gibt es die neue Bestellung?
-		response = getHttpsClient().target(BESTELLUNGEN_ID_URI)
-                                   .resolveTemplate(BESTELLUNGEN_ID_PATH_PARAM, id)
+		response = getHttpsClient().target(ARTIKEL_ID_URI)
+                                   .resolveTemplate(ARTIKEL_ID_PATH_PARAM, id)
                                    .request()
                                    .accept(APPLICATION_JSON)
                                    .get();
