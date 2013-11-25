@@ -439,7 +439,7 @@ public class KundeResource {
 	
 	@Path("{id:[1-9][0-9]*}/file")
 	@POST
-	@Consumes({ "image/jpeg", "image/pjpeg", "image/png" })  // RESTEasy unterstuetzt nicht video/mp4
+	@Consumes({ "image/jpeg", "image/pjpeg", "image/png", "image/gif" })  // RESTEasy unterstuetzt nicht video/mp4
 	@Transactional
 	public Response upload(@PathParam("id") Long kundeId, byte[] bytes) {
 		ks.setFile(kundeId, bytes);
@@ -449,7 +449,7 @@ public class KundeResource {
 	
 	@Path("{id:[1-9][0-9]*}/file")
 	@GET
-	@Produces({ "image/jpeg", "image/pjpeg", "image/png" })
+	@Produces({ "image/jpeg", "image/pjpeg", "image/png", "image/gif" })
 	@Transactional  // Nachladen der Datei : AbstractKunde referenziert File mit Lazy Fetching
 	public byte[] download(@PathParam("id") Long kundeId) {
 		final AbstractKunde kunde = ks.findKundeById(kundeId, FetchType.NUR_KUNDE);

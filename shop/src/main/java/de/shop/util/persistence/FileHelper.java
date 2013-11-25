@@ -33,7 +33,6 @@ import de.shop.util.interceptor.Log;
 public class FileHelper implements Serializable {
 	private static final long serialVersionUID = 12904207356717310L;
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
-	private static final long constant = 1000;
 	
 	// Zulaessige Extensionen fuer Upload mit einer Webseite
 	private String extensionen;
@@ -44,7 +43,7 @@ public class FileHelper implements Serializable {
 	@PostConstruct
 	private void postConstruct() {
 		// Bei .flv wird der Mime-Type weder bei RichFaces noch bei RESTEasy erkannt
-		extensionen = "jpg, jpeg, png, mp4, wav";
+		extensionen = "jpg, jpeg, png, gif, mp4, webm, wav";
 		LOGGER.infof("Extensionen fuer Datei-Upload: %s", extensionen);
 		
 		String appName = null;
@@ -136,7 +135,7 @@ public class FileHelper implements Serializable {
 			// Die Datei wurde beim Hochladen evtl. in einem parallelen Thread angelegt,
 			// der evtl. vor dem Abspeichern der Verwaltungsdaten in der DB fertig war.
 			// Als Zeitunterschied bzw. Toleranz sollten 1000 Millisekunden ausreichend sein.
-			if (creationTime + constant > file.getAktualisiert().getTime()) {
+			if (creationTime + 1000 > file.getAktualisiert().getTime()) {
 				LOGGER.tracef("Die Datei %s existiert bereits", filename);
 				return;
 			}
