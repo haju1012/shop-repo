@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -99,7 +100,7 @@ public class ArtikelResource {
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces
 	@Transactional
-	public Response createArtikel(Artikel artikel) {
+	public Response createArtikel(@Valid Artikel artikel) {
 		LOGGER.trace("In Artikel Post");
 		LOGGER.tracef("Prob Artikel: %s", artikel);
 		
@@ -117,7 +118,7 @@ public class ArtikelResource {
 	@Consumes({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Produces({ APPLICATION_JSON, APPLICATION_XML, TEXT_XML })
 	@Transactional
-	public Response updateArtikel(Artikel artikel) {
+	public Response updateArtikel(@Valid Artikel artikel) {
 		// Vorhandenen Artikel ermitteln
 		final Artikel origArt = as.findArtikelById(artikel.getId());
 		if (origArt == null) {
