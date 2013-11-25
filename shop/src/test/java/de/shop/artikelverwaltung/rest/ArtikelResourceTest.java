@@ -3,8 +3,10 @@ package de.shop.artikelverwaltung.rest;
 import static de.shop.util.TestConstants.ARTIKEL_ID_PATH_PARAM;
 import static de.shop.util.TestConstants.ARTIKEL_ID_URI;
 import static de.shop.util.TestConstants.ARTIKEL_URI;
+
 import static de.shop.util.TestConstants.PASSWORD;
 import static de.shop.util.TestConstants.USERNAME;
+import static java.net.HttpURLConnection.HTTP_CONFLICT;
 import static java.net.HttpURLConnection.HTTP_CREATED;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static javax.ws.rs.client.Entity.json;
@@ -13,11 +15,9 @@ import static org.fest.assertions.api.Assertions.assertThat;
 import static org.fest.assertions.api.Assertions.fail;
 
 import java.lang.invoke.MethodHandles;
-
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.logging.Logger;
-
 
 import javax.ws.rs.core.Response;
 
@@ -28,6 +28,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import de.shop.artikelverwaltung.domain.Artikel;
+
 import de.shop.util.AbstractResourceTest;
 
 @RunWith(Arquillian.class)
@@ -35,6 +36,7 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
 	
 	private static final Long ARTIKEL_ID_VORHANDEN = Long.valueOf(300);
+	private static final Long ARTIKEL_ID_UPDATE = Long.valueOf(301);
 	private static final int NEUE_VERSION = 0;
 	private static final String NEUE_BEZEICHNUNG ="BezeichnungTest";
 	private static final boolean NEU_AUSGESONDERT = false;
@@ -140,5 +142,54 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 		
 		LOGGER.finer("ENDE");
 	}
+	
+	@Test
+	@InSequence(6)
+	public void updateArtikel() {
+		LOGGER.finer("BEGINN");
+		
+		// Given
+		final Long artikelId = ARTIKEL_ID_UPDATE;
+		final String bezeichnung = NEUE_BEZEICHNUNG;
+
+		
+		// When
+		Response response = getHttpsClient().target(ARTIKEL_ID_URI)
+                                            .resolveTemplate(ArtikelResource.ARTIKEL_ID_PATH_PARAM, artikelId)
+                                            .request()
+                                            .accept(APPLICATION_JSON)
+                                            .get();
+		Artikel artikel = response.readEntity(Artikel.class);
+		assertThat(artikel.getId()).isEqualTo(artikelId);
+		final int origVersion = artikel.getVersion();
+    	
+    	// Aus den gelesenen JSON-Werten ein neues JSON-Objekt mit neuer Bezeichnung bauen
+		artikel.setBezeichnung(bezeichnung);
+    	
+		response = getHttpsClient(USERNAME, PASSWORD).target(ARTIKEL_URI)
+                                                     .request()
+                                                     .accept(APPLICATION_JSON)
+                                                     .put(json(artikel));
+		// Then
+		assertThat(response.getStatus()).isEqualTo(HTTP_OK);
+		artikel = response.readEntity(Artikel.class);
+		assertThat(artikel.getVersion()).isGreaterThanOrEqualTo(origVersion);
+		
+		// Erneutes Update funktioniert, da die Versionsnr. aktualisiert ist
+		response = getHttpsClient(USERNAME, PASSWORD).target(ARTIKEL_URI)
+                                                     .request()
+                                                     .put(json(artikel));
+		assertThat(response.getStatus()).isEqualTo(HTTP_OK);
+		response.close();
+		
+		// Erneutes Update funktioniert NICHT, da die Versionsnr. NICHT aktualisiert ist
+		response = getHttpsClient(USERNAME, PASSWORD).target(ARTIKEL_URI)
+                                                     .request()
+                                                     .put(json(artikel));
+		assertThat(response.getStatus()).isEqualTo(HTTP_OK);
+		response.close();
+		
+		LOGGER.finer("ENDE");
+   	}
 	
 }

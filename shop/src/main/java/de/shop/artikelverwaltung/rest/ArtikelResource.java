@@ -46,6 +46,9 @@ public class ArtikelResource {
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 	private static final String NOT_FOUND_ID = "artikel.notFound.id";
 	
+	// public fuer Testklassen
+	public static final String ARTIKEL_ID_PATH_PARAM = "artikelId";
+	
 	@Context
     private UriInfo uriInfo;
 	
