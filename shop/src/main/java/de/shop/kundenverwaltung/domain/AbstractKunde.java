@@ -8,6 +8,9 @@ import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.DATE;
 import static javax.persistence.TemporalType.TIMESTAMP;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import static javax.ws.rs.core.MediaType.APPLICATION_XML;
+import static javax.ws.rs.core.MediaType.TEXT_XML;
 
 import java.io.Serializable;
 import java.lang.invoke.MethodHandles;
@@ -58,6 +61,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.validation.groups.Default;
+import javax.ws.rs.Produces;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
@@ -289,8 +293,6 @@ public abstract class AbstractKunde implements Serializable, Cloneable {
 	private boolean agbAkzeptiert;
 
 	@OneToOne(mappedBy = "kunde", cascade = { PERSIST, REMOVE })
-	@Valid
-	@NotNull(message = "{kunde.adresse.notNull}")
 	private Adresse adresse;
 	
 	// Default: fetch = LAZY, keine Kaskadierungen
@@ -488,10 +490,11 @@ public abstract class AbstractKunde implements Serializable, Cloneable {
 	public boolean isAgbAkzeptiert() {
 		return agbAkzeptiert;
 	}
-
+	
 	public Adresse getAdresse() {
 		return adresse;
 	}
+
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
