@@ -19,7 +19,7 @@ import de.shop.util.interceptor.Log;
  */
 @Decorator
 @Log
-public abstract class BestellungServiceMitGeschenkverpackung implements BestellungService {
+public abstract class AbstractBestellungServiceMitGeschenkverpackung implements BestellungService {
 	private static final Logger LOGGER = Logger.getLogger(MethodHandles.lookup().lookupClass());
 
 	@Inject
