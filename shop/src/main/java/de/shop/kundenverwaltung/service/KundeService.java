@@ -55,7 +55,7 @@ import de.shop.util.persistence.MimeType;
  * @author <a>Team 8</a>
  */
 @Log
-@RolesAllowed ({"admin","mitarbeiter","abteilungsleiter"})
+@RolesAllowed({"admin","mitarbeiter","abteilungsleiter"})
 @SecurityDomain("shop")
 public class KundeService implements Serializable {
 	private static final long serialVersionUID = 5654417703891549367L;

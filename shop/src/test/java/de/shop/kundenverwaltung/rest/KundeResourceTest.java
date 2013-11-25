@@ -91,7 +91,8 @@ public class KundeResourceTest extends AbstractResourceTest {
 	private static final short NEUE_KATEGORIE = 1;
 	private static final BigDecimal NEUER_RABATT = new BigDecimal("0.15");
 	private static final BigDecimal NEUER_UMSATZ = new BigDecimal(10_000_000);
-	private static final Date NEU_SEIT = new GregorianCalendar(2000, 0, 31).getTime();
+
+	private static final Date NEU_SEIT = new GregorianCalendar(2000,0,31).getTime();
 	private static final String NEUE_PLZ = "76133";
 	private static final String NEUE_PLZ_FALSCH = "1234";
 	private static final String NEUER_ORT = "Karlsruhe";
