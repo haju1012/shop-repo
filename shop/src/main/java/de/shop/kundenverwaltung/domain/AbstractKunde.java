@@ -293,6 +293,8 @@ public abstract class AbstractKunde implements Serializable, Cloneable {
 	private boolean agbAkzeptiert;
 
 	@OneToOne(mappedBy = "kunde", cascade = { PERSIST, REMOVE })
+	@Valid
+	@NotNull(message = "{kunde.adresse.notNull}")
 	private Adresse adresse;
 	
 	// Default: fetch = LAZY, keine Kaskadierungen
