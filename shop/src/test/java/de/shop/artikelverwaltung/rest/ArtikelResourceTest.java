@@ -6,7 +6,6 @@ import static de.shop.util.TestConstants.ARTIKEL_URI;
 
 import static de.shop.util.TestConstants.PASSWORD;
 import static de.shop.util.TestConstants.USERNAME;
-import static java.net.HttpURLConnection.HTTP_CONFLICT;
 import static java.net.HttpURLConnection.HTTP_CREATED;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static javax.ws.rs.client.Entity.json;
@@ -38,11 +37,11 @@ public class ArtikelResourceTest extends AbstractResourceTest {
 	private static final Long ARTIKEL_ID_VORHANDEN = Long.valueOf(300);
 	private static final Long ARTIKEL_ID_UPDATE = Long.valueOf(301);
 	private static final int NEUE_VERSION = 0;
-	private static final String NEUE_BEZEICHNUNG ="BezeichnungTest";
+	private static final String NEUE_BEZEICHNUNG = "BezeichnungTest";
 	private static final boolean NEU_AUSGESONDERT = false;
-	static DateFormat formatter =DateFormat.getDateInstance();
+	static DateFormat formatter = DateFormat.getDateInstance();
 	
-		private static Date d=new Date();
+		private static Date d = new Date();
 		private static final Date NEU_ERZEUGT = d;
 		private static final Date NEU_AKTUALISIERT = d;
 		
