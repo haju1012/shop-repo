@@ -110,7 +110,7 @@ public class ArtikelResource {
 		artikel.setId(KEINE_ID);
 		//artikel.setBezeichnung(artikel.getBezeichnung());
 		
-		//kunde = (Privatkunde) ks.createKunde(kunde, locale);
+		
 		artikel = as.createArtikel(artikel);
 		LOGGER.tracef("Artikel: %s", artikel);
 		
@@ -130,7 +130,7 @@ public class ArtikelResource {
 		}
 		LOGGER.tracef("Artikel vorher: %s", origArt);
 	
-		// Daten des vorhandenen Kunden ueberschreiben
+		// Daten des vorhandenen Artikel ueberschreiben
 		origArt.setValues(artikel);
 		LOGGER.tracef("Artikel nachher: %s", origArt);
 		
