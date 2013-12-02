@@ -439,7 +439,7 @@ public class KundeResource {
 	
 	@Path("{id:[1-9][0-9]*}/file")
 	@POST
-	@Consumes({ "image/jpeg", "image/pjpeg", "image/png", "image/gif", "video/mp4" })  // RESTEasy unterstuetzt nicht video/mp4
+	@Consumes({ "image/jpeg", "image/pjpeg", "image/png", "image/gif", "video/mp4" })//RESTEasy unterstuetzt nicht mp4
 	@Transactional
 	public Response upload(@PathParam("id") Long kundeId, byte[] bytes) {
 		ks.setFile(kundeId, bytes);
