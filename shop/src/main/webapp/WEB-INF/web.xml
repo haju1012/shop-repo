@@ -83,10 +83,10 @@
     <param-name>resteasy.media.type.mappings</param-name>
     <param-value>json : application/json, xml : application/xml, image : image/*, text : text/plain</param-value>
   </context-param>
-  <!--<context-param>
+  <context-param>
   	<param-name>org.richfaces.push.jms.enabled</param-name>
   	<param-value>true</param-value>
-  </context-param>-->
+  </context-param>
   <env-entry>
     <env-entry-name>absenderMail</env-entry-name>
     <env-entry-type>java.lang.String</env-entry-type>
@@ -167,10 +167,10 @@
       <transport-guarantee>CONFIDENTIAL</transport-guarantee>
     </user-data-constraint>
   </security-constraint>
- <!-- <login-config>
+ <login-config>
 <auth-method>BASIC</auth-method>
 <realm-name>Webshop</realm-name>
-</login-config> -->
+</login-config> 
   <security-role>
     <role-name>admin</role-name>
   </security-role>
