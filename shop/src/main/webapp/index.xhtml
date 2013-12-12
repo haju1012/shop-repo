@@ -6,7 +6,7 @@
 	<body>
 		<ui:composition template="/WEB-INF/templates/desktop/main.xml">
 			<ui:define name="title">
-				#{msg['index.title']}
+			<ui:param name="pageTitle" value="#{msg['index.title']}"/>
 			</ui:define>
 
 			<ui:define name="content">
