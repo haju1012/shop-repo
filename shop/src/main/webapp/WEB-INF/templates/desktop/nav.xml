@@ -16,4 +16,14 @@
 		        outcome="/artikelverwaltung/selectArtikel"
 				value="#{msg['nav.selectArtikel']}"/>
 	</p>
+				<p id="createKunde">
+		<h:link id="menuKundeRegistrieren"
+		        outcome="/kundenverwaltung/viewKunde"
+				value="#{msg['nav.kundeRegestrieren']}"/>
+	</p>
+				<p id="aendernArtikel">
+		<h:link id="menuaendernArtikel"
+		        outcome="/artikelverwaltung/listArtikel"
+				value="#{msg['ArtikelAendern']}"/>
+	</p>
 </ui:composition>
