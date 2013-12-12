@@ -6,4 +6,9 @@
 		        outcome="/kundenverwaltung/viewKunde"
 				value="#{msg['nav.viewKunde']}"/>
 	</p>
+		<p id="login">
+		<h:link id="menuLogin"
+		        outcome="/auth/login"
+				value="#{msg['nav.login']}"/>
+	</p>
 </ui:composition>
