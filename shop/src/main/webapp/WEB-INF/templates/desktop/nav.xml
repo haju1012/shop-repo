@@ -11,4 +11,9 @@
 		        outcome="/auth/login"
 				value="#{msg['nav.login']}"/>
 	</p>
+			<p id="viewArtikel">
+		<h:link id="menuSelectArtikel"
+		        outcome="/artikelverwaltung/selectArtikel"
+				value="#{msg['nav.selectArtikel']}"/>
+	</p>
 </ui:composition>
