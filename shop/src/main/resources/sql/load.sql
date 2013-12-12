@@ -146,6 +146,8 @@ INSERT INTO artikel (id, version, bezeichnung, ausgesondert, erzeugt, aktualisie
 INSERT INTO artikel (id, version, bezeichnung, ausgesondert, erzeugt, aktualisiert) VALUES (304,0,'Spiegel ''Mach mich schöner''',0,'01.01.2007 05:00:00','01.01.2007 05:00:00');
 INSERT INTO artikel (id, version, bezeichnung, ausgesondert, erzeugt, aktualisiert) VALUES (305,0,'Kleiderschrank ''Viel Platz''',0,'01.01.2007 06:00:00','01.01.2007 06:00:00');
 INSERT INTO artikel (id, version, bezeichnung, ausgesondert, erzeugt, aktualisiert) VALUES (306,0,'Bett ''Mit Holzwurm''',0,'07.08.2007 00:00:00','07.08.2007 00:00:00');
+INSERT INTO artikel (id, version, bezeichnung, ausgesondert, erzeugt, aktualisiert) VALUES (308,0,'Bett ''Mit Holzwurm''',0,'07.08.2007 00:00:00','07.08.2007 00:00:00');
+INSERT INTO artikel (id, version, bezeichnung, ausgesondert, erzeugt, aktualisiert) VALUES (310,0,'Bett ''Mit Holzwurm''',0,'07.08.2007 00:00:00','07.08.2007 00:00:00');
 
 --
 -- bestellung
@@ -156,6 +158,8 @@ INSERT INTO bestellung (id, version, kunde_fk, idx, erzeugt, aktualisiert) VALUE
 INSERT INTO bestellung (id, version, kunde_fk, idx, erzeugt, aktualisiert) VALUES (403,0,102,1,'01.01.2007 04:00:00','01.01.2007 04:00:00');
 INSERT INTO bestellung (id, version, kunde_fk, idx, erzeugt, aktualisiert) VALUES (404,0,104,0,'01.01.2007 05:00:00','01.01.2007 05:00:00');
 INSERT INTO bestellung (id, version, kunde_fk, idx, erzeugt, aktualisiert) VALUES (410,0,121,0,'01.01.2007 06:00:00','01.01.2007 06:00:00');
+INSERT INTO bestellung (id, version, kunde_fk, idx, erzeugt, aktualisiert) VALUES (412,0,121,0,'01.01.2007 06:00:00','01.01.2007 06:00:00');
+INSERT INTO bestellung (id, version, kunde_fk, idx, erzeugt, aktualisiert) VALUES (414,0,121,0,'01.01.2007 06:00:00','01.01.2007 06:00:00');
 
 --
 -- bestellposition
