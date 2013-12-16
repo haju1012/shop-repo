@@ -187,8 +187,8 @@ public class ArtikelService implements Serializable {
 				 .setMaxResults(anzahl)
 				 .getResultList();
 	}
-	public void deleteKundeById(Long kundeId) {
-		final Artikel artikel = findArtikelById(kundeId);
+	public void deleteArtikelById(Long artikelId) {
+		final Artikel artikel = findArtikelById(artikelId);
 		if (artikel == null) {
 			// Der Kunde existiert nicht oder ist bereits geloescht
 			return;

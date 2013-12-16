@@ -157,7 +157,7 @@ public class ArtikelResource {
 	@Produces
 	@Transactional
 	public void deleteKunde(@PathParam("id") long artikelId) {
-		as.deleteKundeById(artikelId);
+		as.deleteArtikelById(artikelId);
 	}
 	
 	
