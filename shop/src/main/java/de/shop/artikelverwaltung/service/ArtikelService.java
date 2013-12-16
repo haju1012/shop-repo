@@ -21,6 +21,9 @@ import org.jboss.logging.Logger;
 import com.google.common.base.Strings;
 
 import de.shop.artikelverwaltung.domain.Artikel;
+import de.shop.kundenverwaltung.domain.AbstractKunde;
+import de.shop.kundenverwaltung.service.KundeDeleteBestellungException;
+import de.shop.kundenverwaltung.service.KundeService.FetchType;
 import de.shop.util.interceptor.Log;
 
 
@@ -183,5 +186,16 @@ public class ArtikelService implements Serializable {
 		return em.createNamedQuery(Artikel.FIND_LADENHUETER, Artikel.class)
 				 .setMaxResults(anzahl)
 				 .getResultList();
+	}
+	public void deleteKundeById(Long kundeId) {
+		final Artikel artikel = findArtikelById(kundeId);
+		if (artikel == null) {
+			// Der Kunde existiert nicht oder ist bereits geloescht
+			return;
+		}
+
+
+		// Artikeldaten loeschen
+		em.remove(artikel);
 	}
 }

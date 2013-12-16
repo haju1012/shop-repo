@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -146,6 +147,19 @@ public class ArtikelResource {
 				.build();
 	}
 	
-
+	/**
+	 * Mit der URL /kunden{id} einen Kunden per DELETE l&ouml;schen
+	 * @param kundeId des zu l&ouml;schenden Kunden
+	 *         gel&ouml;scht wurde, weil es zur gegebenen id keinen Kunden gibt
+	 */
+	@Path("{id:[1-9][0-9]*}")
+	@DELETE
+	@Produces
+	@Transactional
+	public void deleteKunde(@PathParam("id") long artikelId) {
+		as.deleteKundeById(artikelId);
+	}
+	
+	
 	
 }
