@@ -3,6 +3,8 @@ package de.shop.kundenverwaltung.rest;
 import static de.shop.util.TestConstants.KUNDEN_ID_URI;
 import static de.shop.util.TestConstants.KUNDEN_URI;
 import static de.shop.util.TestConstants.PASSWORD;
+import static de.shop.util.TestConstants.PASSWORD_MITARBEITER;
+import static de.shop.util.TestConstants.USERNAME_MITARBEITER;
 import static de.shop.util.TestConstants.PASSWORD_ADMIN;
 import static de.shop.util.TestConstants.USERNAME;
 import static de.shop.util.TestConstants.USERNAME_ADMIN;
@@ -77,7 +79,7 @@ public class KundeResourceConcurrencyTest extends AbstractResourceTest {
 			@Override
 			public Integer call() {
 				final Response response = new HttpsConcurrencyHelper()
-				                          .getHttpsClient(USERNAME, PASSWORD)
+				                          .getHttpsClient(USERNAME_MITARBEITER, PASSWORD_MITARBEITER)
                                           .target(KUNDEN_URI)
                                           .request()
                                           .accept(APPLICATION_JSON)
