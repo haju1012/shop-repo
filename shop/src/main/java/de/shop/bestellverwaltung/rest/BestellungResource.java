@@ -59,6 +59,7 @@ public class BestellungResource {
 	private static final String NOT_FOUND_ID = "bestellung.notFound.id";
 	private static final String NOT_FOUND_USERNAME = "bestellung.notFound.username";
 	private static final String NOT_FOUND_ID_ARTIKEL = "artikel.notFound.id";
+	private static final String NOT_FOUND_ID_BESTELLUNG = "bestellung.notFound.id";
 	
 	@Context
 	private UriInfo uriInfo;
@@ -146,6 +147,8 @@ public class BestellungResource {
 	public URI getUriBestellung(Bestellung bestellung, UriInfo uriInfo) {
 		return uriHelper.getUri(BestellungResource.class, "findBestellungById", bestellung.getId(), uriInfo);
 	}
+	
+
 
 	
 	/**
@@ -287,4 +290,5 @@ public class BestellungResource {
 		return Response.created(getUriBestellung(bestellung, uriInfo))
 				       .build();
 	}
+	
 }
