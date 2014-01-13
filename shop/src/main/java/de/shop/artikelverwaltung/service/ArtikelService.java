@@ -21,9 +21,6 @@ import org.jboss.logging.Logger;
 import com.google.common.base.Strings;
 
 import de.shop.artikelverwaltung.domain.Artikel;
-import de.shop.kundenverwaltung.domain.AbstractKunde;
-import de.shop.kundenverwaltung.service.KundeDeleteBestellungException;
-import de.shop.kundenverwaltung.service.KundeService.FetchType;
 import de.shop.util.interceptor.Log;
 
 

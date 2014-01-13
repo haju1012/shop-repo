@@ -59,7 +59,7 @@ public class BestellungResource {
 	private static final String NOT_FOUND_ID = "bestellung.notFound.id";
 	private static final String NOT_FOUND_USERNAME = "bestellung.notFound.username";
 	private static final String NOT_FOUND_ID_ARTIKEL = "artikel.notFound.id";
-	private static final String NOT_FOUND_ID_BESTELLUNG = "bestellung.notFound.id";
+	//private static final String NOT_FOUND_ID_BESTELLUNG = "bestellung.notFound.id";
 	
 	@Context
 	private UriInfo uriInfo;

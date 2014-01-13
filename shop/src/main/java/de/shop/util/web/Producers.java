@@ -8,7 +8,7 @@ import javax.faces.context.Flash;
 
 
 /**
- * @author <a href="mailto:Juergen.Zimmermann@HS-Karlsruhe.de">J&uuml;rgen Zimmermann</a>
+ * @author <a>Team 8</a>
  */
 public class Producers {
 	@Produces
